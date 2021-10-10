@@ -1,0 +1,17 @@
+{
+  "name": "1platformdomany",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Navani Nayak",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.13",
+    "puppeteer": "^10.4.0",
+    "selenium-webdriver": "^4.0.0-rc-2"
+  }
+}
