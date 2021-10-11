@@ -21,17 +21,25 @@ async function FormSubmit(username,password){
 async function UserProfile(){
   const InstagramPage=await FormSubmit("8848419258","navani.007");
   await  InstagramPage.waitForNavigation();
-  //await InstagramPage.click("#react-root > section > nav > div._8MQSO.Cx7Bp > div > div > div.ctQZg > div > div:nth-child(1) > div > a");
-  // await InstagramPage.waitForNavigation();
+
   //gio To Profile page 
   await InstagramPage.click("#react-root > section > nav > div._8MQSO.Cx7Bp > div > div > div.ctQZg > div > div:nth-child(5) > span");
   await InstagramPage.click("div._7UhW9.xLCgt.MMzan.KV-D4.fDxYl");
  // await  InstagramPage.waitForNavigation();
-  console.log("hello ");
-  //await InstagramPage.waitForSelector("#react-root > section > main > div > ul > li:nth-child(1) > span > span");
-  // let element=await InstagramPage.$eval("span.g47SY.lOXF2",el=>el.textContent);
-  // console.log(element);
-  let element=await InstagramPage.$("span.g47SY");
+
+  //get user Information post,Followers and following list
+  await InstagramPage.waitForSelector("#react-root > section > main > div > header > section > ul > li:nth-child(1) > span > span");
+  let TotalPost=await InstagramPage.$eval("#react-root > section > main > div > header > section > ul > li:nth-child(1) > span > span",(el)=>el.textContent);
+  let Followers=await InstagramPage.$eval("#react-root > section > main > div > header > section > ul > li:nth-child(2) > a > span",(el)=>el.textContent);
+  let Following=await InstagramPage.$eval("#react-root > section > main > div > header > section > ul > li:nth-child(3) > a > span",(el)=>el.textContent);
+  
+  let user={
+    Post:TotalPost,
+    followers:Followers,
+    following:Following
+  }
+
+  console.log(user);
 
 
 }
