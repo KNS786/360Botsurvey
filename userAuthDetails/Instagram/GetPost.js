@@ -25,7 +25,7 @@ const UserDetails=GetPostDetails;
 async function MediaContentGet(page,totalPost){
    const MediaInfomation=[];
 
-   let next=0;
+   let next=1;
    while(next < totalPost){
    //const text=await page.$(".C4VMK");
    await page.waitForSelector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div > div.qF0y9.Igw0E.IwRSH.eGOV_._4EzTm > div > div.eo2As > div.EtaWk > ul > div > li > div > div > div.C4VMK");
@@ -48,13 +48,13 @@ async function MediaContentGet(page,totalPost){
          Likes_views=await page.$eval("body > div._2dDPU.CkGkG > div.zZYga > div > article > div > div.qF0y9.Igw0E.IwRSH.eGOV_._4EzTm > div > div > section.EDfFK.ygqzn > div > span",(el)=>el.textContent);
       }
       console.log({Text,Likes_views,DatePosted});
-      MediaInfomation.push({Likes_views,DatePosted});
+      MediaInfomation.push({Text,Likes_views,DatePosted});
     
       await page.click("body > div._2dDPU.CkGkG > div.EfHg9 > div > div > a._65Bje.coreSpriteRightPaginationArrow");
    }else{
       Likes_views=await page.$eval("body > div._2dDPU.CkGkG > div.zZYga > div > article > div > div.qF0y9.Igw0E.IwRSH.eGOV_._4EzTm > div > div.eo2As > section.EDfFK.ygqzn > div",(el)=>el.textContent);
       console.log({Text,Likes_views,DatePosted});
-      MediaInfomation.push({Likes_views,DatePosted});
+      MediaInfomation.push({Text,Likes_views,DatePosted});
       await page.click("body > div._2dDPU.CkGkG > div.EfHg9 > div > div > a");       
    }
    next++;
