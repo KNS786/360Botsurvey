@@ -15,7 +15,7 @@ const UserDetails=GetPostDetails;
    //get Post all Information
    //Followers and Following List
    await GetAllPost(page,totalPost);
-   //await GetAllFollowers(page);
+   await GetAllFollowers(page);
    //await GetAllFollowing(page);
 
 })();
@@ -47,21 +47,23 @@ async function MediaContentGet(page,totalPost){
       }else{
          Likes_views=await page.$eval("body > div._2dDPU.CkGkG > div.zZYga > div > article > div > div.qF0y9.Igw0E.IwRSH.eGOV_._4EzTm > div > div > section.EDfFK.ygqzn > div > span",(el)=>el.textContent);
       }
-      console.log({Text,Likes_views,DatePosted});
       MediaInfomation.push({Text,Likes_views,DatePosted});
+      console.log({Text,Likes_views,DatePosted});
     
       await page.click("body > div._2dDPU.CkGkG > div.EfHg9 > div > div > a._65Bje.coreSpriteRightPaginationArrow");
    }else{
       Likes_views=await page.$eval("body > div._2dDPU.CkGkG > div.zZYga > div > article > div > div.qF0y9.Igw0E.IwRSH.eGOV_._4EzTm > div > div.eo2As > section.EDfFK.ygqzn > div",(el)=>el.textContent);
-      console.log({Text,Likes_views,DatePosted});
       MediaInfomation.push({Text,Likes_views,DatePosted});
+      console.log({Text,Likes_views,DatePosted});
       await page.click("body > div._2dDPU.CkGkG > div.EfHg9 > div > div > a");       
    }
    next++;
    
  }
 
-
+   //close after completion
+   if(totalPost > 0)
+      await page.click("body > div._2dDPU.CkGkG > div.qF0y9.Igw0E.IwRSH.eGOV_._4EzTm.BI4qX.qJPeX.fm1AK.TxciK.yiMZG > button");
 
    return MediaInfomation;
  
@@ -79,6 +81,8 @@ async function GetAllPost(page,totalPost){
 }
 
 async function GetAllFollowers(page){
+   await page.click("#react-root > section > main > div > header > section > ul > li:nth-child(2) > a");
+   
 
 }
 async function GetAllFollowing(page){
