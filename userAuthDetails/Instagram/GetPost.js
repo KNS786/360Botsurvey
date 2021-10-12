@@ -9,13 +9,21 @@ const UserDetails=GetPostDetails;
    const page=await auth();
    await page.goto("https://www.instagram.com/sundarpichai/");
    const List_PostFollowersFollowing=await UserDetails(page);
+
    const totalPost=Number(List_PostFollowersFollowing.Post);
+   const MillionFollowers = List_PostFollowersFollowing.followers.split("m")
+   const ThousandFollowers=List_PostFollowersFollowing.followers.split("k");
+   const totalFollowers= MillionFollowers.length > 1 ? 
+      Number(MillionFollowers[0]) * 1000000 :
+      (ThousandFollowers.length > 1 ? Number(ThousandFollowers[0])*1000 : Number(ThousandFollowers[0]));
+
+
    console.log(List_PostFollowersFollowing);
    
    //get Post all Information
    //Followers and Following List
    await GetAllPost(page,totalPost);
-   await GetAllFollowers(page);
+   await GetAllFollowers(page,totalFollowers);
    //await GetAllFollowing(page);
 
 })();
@@ -80,9 +88,18 @@ async function GetAllPost(page,totalPost){
 
 }
 
-async function GetAllFollowers(page){
+async function GetAllFollowers(page,totalFollowers){
    await page.click("#react-root > section > main > div > header > section > ul > li:nth-child(2) > a");
+   console.log("Total Followers : "+totalFollowers);
+   // await page.mouse.move(0,0);
+   // await page.mouse.down();
    
+   let MouseMoveAfterView6Elements=0;
+   let MoveNextElm=1;
+   while(MoveNextElm < totalFollowers ){
+      //scroll after view 
+   }
+
 
 }
 async function GetAllFollowing(page){
