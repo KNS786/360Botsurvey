@@ -36,7 +36,7 @@ async function GetPostDetails(InstagramPage){
 }
 
 async function UserProfile(){
-  const InstagramPage=await FormSubmit("8848419258","navani.007");
+  const InstagramPage=await FormSubmit("dsrty981","navani.007");
   await  InstagramPage.waitForNavigation();
 
   //gio To Profile page 
